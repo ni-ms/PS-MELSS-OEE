@@ -7,7 +7,7 @@ from home.models import *
 from django.contrib import messages
 
 def entryPage(request):
-    return HttpResponse("this is homepage, or login") #render(request, 'entryPage.html')
+    return render(request, 'LandingPage.html') #HttpResponse("this is homepage, or login") 
 
 def inputValues(request):
     return HttpResponse("this is where you input values")
