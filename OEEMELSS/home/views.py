@@ -8,3 +8,15 @@ from django.contrib import messages
 
 def entryPage(request):
     return HttpResponse("this is homepage") #render(request, 'entryPage.html')
+
+def inputValues(request):
+    return HttpResponse("this is where you input values")
+
+def displayPage(request):
+    return HttpResponse("this is where you show OEE value")
+
+def getHistoricalData(request):
+    return HttpResponse("this is where you input machine and part id to display historical OEE value")
+
+def displayHistoricalData(request):
+    return HttpResponse("this is where you show historical OEE value for a given machine and part id")
