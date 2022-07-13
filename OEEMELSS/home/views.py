@@ -10,13 +10,13 @@ def entryPage(request):
     return render(request, 'LandingPage.html') #HttpResponse("this is homepage, or login") 
 
 def inputValues(request):
-    return HttpResponse("this is where you input values")
+    return render(request, 'CalculateOEE.html') #HttpResponse("this is where you input values")
 
 def displayPage(request):
-    return HttpResponse("this is where you show OEE value")
+    return render(request, 'OEEOutput.html') #HttpResponse("this is where you show OEE value")
 
 def getHistoricalData(request):
-    return HttpResponse("this is where you input machine and part id to display historical OEE value")
+    return render(request, 'DisplayOEE.html') #HttpResponse("this is where you input machine and part id to display historical OEE value")
 
 def displayHistoricalData(request):
-    return HttpResponse("this is where you show historical OEE value for a given machine and part id")
+    return render(request, 'OEEGraph.html') #HttpResponse("this is where you show historical OEE value for a given machine and part id")
