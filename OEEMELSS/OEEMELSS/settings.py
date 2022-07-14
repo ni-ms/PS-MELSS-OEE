@@ -75,12 +75,16 @@ WSGI_APPLICATION = "OEEMELSS.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# for local testing
+
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "djongo",
 #         "NAME": "oeemelssdemo",
 #     }
 # }
+
+# Connection to cluster
 
 DATABASES = {
     "default": {
