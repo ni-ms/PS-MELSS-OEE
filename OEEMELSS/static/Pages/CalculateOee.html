@@ -33,7 +33,7 @@
 <!-- Machine ID-->
   <div class="input-group input-group-lg">
     <span class="input-group-text" id="inputGroup-sizing-lg">Machine ID</span>
-      <select class="form-select" aria-label="Default select example">
+      <select class="form-select" aria-label="Default select example" name = "MachineID" required>
         <option selected>Select Machine ID</option>
         <option value="123">123</option>
         <option value="239">239</option>
@@ -116,9 +116,7 @@
       <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm">Total Amount Produced</span>
 
-        <input type="text" class="form-control" placeholder="Hour" aria-label="Hour"name = "TotalAmountProducedHr" required>
-        <span class="input-group-text">:</span>
-        <input type="text" class="form-control" placeholder="Minute" aria-label="Minute">
+        <input type="text" class="form-control" placeholder="Hour" aria-label="Hour"name = "TotalAmountProduced" required>
 
       </div>
     <button type="submit" class="btn btn-primary">Calculate OEE</button>
