@@ -22,6 +22,28 @@ def ErrorPage(request):
     return render(request,'Pages/404Page.html')
 
 def inputValues(request):
+    if request.method == 'POST':
+        MachineID = request.POST.get('MachineID')
+        TotalShiftTimeHr = int(request.POST.get('TotalShiftTimeHr'))
+        TotalShiftTimeMin = int(request.POST.get('TotalShiftTimeMin'))
+        PlannedDownTimeHr = int(request.POST.get('PlannedDownTimeHr'))
+        PlannedDownTimeMin = int(request.POST.get('PlannedDownTimeMin'))
+        AllDownTimeHr = int(request.POST.get('AllDownTimeHr'))
+        AllDownTimeMin = int(request.POST.get('AllDownTimeMin'))
+        AllStopTimeHr = int(request.POST.get('AllStopTimeHr'))
+        AllStopTimeMin = request.POST.get('AllStopTimeMin')
+        ActualCycleTimeHr = request.POST.get('ActualCycleTimeHr')
+        ActualCycleTimeMin = request.POST.get('ActualCycleTimeMin')
+        ActualOperationalTimeHr = request.POST.get('ActualOperationalTimeHr')
+        ActualOperationalTimeMin = request.POST.get('ActualOperationalTimeMin')
+        TheoreticalCycleTimeHr = request.POST.get('TheoreticalCycleTimeHr')
+        TheoreticalCycleTimeMin = request.POST.get('TheoreticalCycleTimeMin')
+        ActualProcessingTimeHr = request.POST.get('ActualProcessingTimeHr')
+        ActualProcessingTimeMin = request.POST.get('ActualProcessingTimeMin')
+        TotalAmountProduced = request.POST.get('TotalAmountProduced')
+
+        TotalShiftTime = 
+    
     return render(request, 'Pages/CalculateOEE.html') #HttpResponse("this is where you input values")
 
 def displayPage(request):
