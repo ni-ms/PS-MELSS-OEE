@@ -23,7 +23,7 @@ def ErrorPage(request):
 
 def inputValues(request):
     if request.method == 'POST':
-        MachineID = request.POST.get('MachineID')
+        MachineID = request.POST.get('MachineID') # Enter in DB
         TotalShiftTimeHr = float(request.POST.get('TotalShiftTimeHr'))
         TotalShiftTimeMin = float(request.POST.get('TotalShiftTimeMin'))
         PlannedDownTimeHr = float(request.POST.get('PlannedDownTimeHr'))
@@ -51,13 +51,19 @@ def inputValues(request):
 
         LoadingTime = TotalShiftTime-PlannedDownTime
         OperatingTime = LoadingTime - (AllDownTime + AllStopTime)
-        Availability = ((OperatingTime)/(LoadingTime)) * 100
+        Availability = ((OperatingTime)/(LoadingTime)) * 100 # Enter in DB
         OperatingSpeedRate = (TheoreticalCycleTime)/(ActualCycleTime)
         NetOperatingRate = (ActualProcessingTime)/(OperatingTime)
-        Performance = (NetOperatingRate * OperatingSpeedRate) * 100
-        Quality = ((TotalAmountProduced - DefectAmountProduced)/TotalAmountProduced) * 100
+        Performance = (NetOperatingRate * OperatingSpeedRate) * 100 # Enter in DB
+        Quality = ((TotalAmountProduced - DefectAmountProduced)/TotalAmountProduced) * 100 # Enter in DB
 
         OEEValue = (Availability * Quality * Performance) / 10000
+        print(OEEValue, Availability, Quality, Performance)
+
+        # Enter mongo Raw commands here
+
+
+        # End mongo Raw commands here
 
         return redirect('/displayPage')
 
