@@ -42,7 +42,16 @@ def inputValues(request):
         ActualProcessingTimeMin = int(request.POST.get('ActualProcessingTimeMin'))
         TotalAmountProduced = int(request.POST.get('TotalAmountProduced'))
 
-        TotalShiftTime = 
+        TotalShiftTime = (TotalShiftTimeHr*60) + TotalShiftTimeMin
+        PlannedDownTime = (PlannedDownTimeHr*60) + PlannedDownTimeMin
+        AllDownTime = (AllDownTimeHr*60) + AllDownTimeMin
+        AllStopTime = (AllStopTimeHr*60) + AllStopTimeMin
+        ActualCycleTime = (ActualCycleTimeHr*60) + ActualCycleTimeMin
+        ActualOperationalTime = (ActualOperationalTimeHr*60) + ActualOperationalTimeMin
+        TheoreticalCycleTime = (TheoreticalCycleTimeHr*60) + TheoreticalCycleTimeMin
+        ActualProcessingTime = (ActualProcessingTimeHr*60) + ActualProcessingTimeMin
+
+        
     
     return render(request, 'Pages/CalculateOEE.html') #HttpResponse("this is where you input values")
 
