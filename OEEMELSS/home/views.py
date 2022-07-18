@@ -24,34 +24,41 @@ def ErrorPage(request):
 def inputValues(request):
     if request.method == 'POST':
         MachineID = request.POST.get('MachineID')
-        TotalShiftTimeHr = int(request.POST.get('TotalShiftTimeHr'))
-        TotalShiftTimeMin = int(request.POST.get('TotalShiftTimeMin'))
-        PlannedDownTimeHr = int(request.POST.get('PlannedDownTimeHr'))
-        PlannedDownTimeMin = int(request.POST.get('PlannedDownTimeMin'))
-        AllDownTimeHr = int(request.POST.get('AllDownTimeHr'))
-        AllDownTimeMin = int(request.POST.get('AllDownTimeMin'))
-        AllStopTimeHr = int(request.POST.get('AllStopTimeHr'))
-        AllStopTimeMin = int(request.POST.get('AllStopTimeMin'))
-        ActualCycleTimeHr = int(request.POST.get('ActualCycleTimeHr'))
-        ActualCycleTimeMin = int(request.POST.get('ActualCycleTimeMin'))
-        ActualOperationalTimeHr = int(request.POST.get('ActualOperationalTimeHr'))
-        ActualOperationalTimeMin = int(request.POST.get('ActualOperationalTimeMin'))
-        TheoreticalCycleTimeHr = int(request.POST.get('TheoreticalCycleTimeHr'))
-        TheoreticalCycleTimeMin = int(request.POST.get('TheoreticalCycleTimeMin'))
-        ActualProcessingTimeHr = int(request.POST.get('ActualProcessingTimeHr'))
-        ActualProcessingTimeMin = int(request.POST.get('ActualProcessingTimeMin'))
-        TotalAmountProduced = int(request.POST.get('TotalAmountProduced'))
+        TotalShiftTimeHr = float(request.POST.get('TotalShiftTimeHr'))
+        TotalShiftTimeMin = float(request.POST.get('TotalShiftTimeMin'))
+        PlannedDownTimeHr = float(request.POST.get('PlannedDownTimeHr'))
+        PlannedDownTimeMin = float(request.POST.get('PlannedDownTimeMin'))
+        AllDownTimeHr = float(request.POST.get('AllDownTimeHr'))
+        AllDownTimeMin = float(request.POST.get('AllDownTimeMin'))
+        AllStopTimeHr = float(request.POST.get('AllStopTimeHr'))
+        AllStopTimeMin = float(request.POST.get('AllStopTimeMin'))
+        ActualCycleTimeHr = float(request.POST.get('ActualCycleTimeHr'))
+        ActualCycleTimeMin = float(request.POST.get('ActualCycleTimeMin'))
+        TheoreticalCycleTimeHr = float(request.POST.get('TheoreticalCycleTimeHr'))
+        TheoreticalCycleTimeMin = float(request.POST.get('TheoreticalCycleTimeMin'))
+        ActualProcessingTimeHr = float(request.POST.get('ActualProcessingTimeHr'))
+        ActualProcessingTimeMin = float(request.POST.get('ActualProcessingTimeMin'))
+        TotalAmountProduced = float(request.POST.get('TotalAmountProduced'))
+        DefectAmountProduced = float(request.POST.get('DefectAmountProduced'))        
 
         TotalShiftTime = (TotalShiftTimeHr*60) + TotalShiftTimeMin
         PlannedDownTime = (PlannedDownTimeHr*60) + PlannedDownTimeMin
         AllDownTime = (AllDownTimeHr*60) + AllDownTimeMin
         AllStopTime = (AllStopTimeHr*60) + AllStopTimeMin
         ActualCycleTime = (ActualCycleTimeHr*60) + ActualCycleTimeMin
-        ActualOperationalTime = (ActualOperationalTimeHr*60) + ActualOperationalTimeMin
         TheoreticalCycleTime = (TheoreticalCycleTimeHr*60) + TheoreticalCycleTimeMin
         ActualProcessingTime = (ActualProcessingTimeHr*60) + ActualProcessingTimeMin
 
-        
+        LoadingTime = TotalShiftTime-PlannedDownTime
+        OperatingTime = LoadingTime - (AllDownTime + AllStopTime)
+        Availability = (OperatingTime)/(LoadingTime)
+        OperatingSpeedRate = (TheoreticalCycleTime)/(ActualCycleTime)
+        NetOperatingRate = (ActualProcessingTime)/(OperatingTime)
+        Performance = NetOperatingRate * OperatingSpeedRate
+        Quality = (TotalAmountProduced - DefectAmountProduced)/TotalAmountProduced
+
+        OEEValue = Availability * Quality * Performance * 100 * 100
+
     
     return render(request, 'Pages/CalculateOEE.html') #HttpResponse("this is where you input values")
 
