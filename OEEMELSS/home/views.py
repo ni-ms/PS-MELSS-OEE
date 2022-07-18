@@ -51,13 +51,15 @@ def inputValues(request):
 
         LoadingTime = TotalShiftTime-PlannedDownTime
         OperatingTime = LoadingTime - (AllDownTime + AllStopTime)
-        Availability = (OperatingTime)/(LoadingTime)
+        Availability = ((OperatingTime)/(LoadingTime)) * 100
         OperatingSpeedRate = (TheoreticalCycleTime)/(ActualCycleTime)
         NetOperatingRate = (ActualProcessingTime)/(OperatingTime)
-        Performance = NetOperatingRate * OperatingSpeedRate
-        Quality = (TotalAmountProduced - DefectAmountProduced)/TotalAmountProduced
+        Performance = (NetOperatingRate * OperatingSpeedRate) * 100
+        Quality = ((TotalAmountProduced - DefectAmountProduced)/TotalAmountProduced) * 100
 
-        OEEValue = Availability * Quality * Performance * 100 * 100
+        OEEValue = (Availability * Quality * Performance) / 10000
+
+        return redirect('/displayPage')
 
     
     return render(request, 'Pages/CalculateOEE.html') #HttpResponse("this is where you input values")
