@@ -11,10 +11,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-          <a class="nav-link" href="#">Calculate the OEE</a>
-          <a class="nav-link" href="#">Display OEE for a production line</a>
-          <a class="nav-link ">Logout</a>
+          <a class="nav-link active" aria-current="page" href={% url 'dashboard' %}>Home</a>
+          <a class="nav-link" href={% url 'inputValues' %}>Calculate the OEE</a>
+          <a class="nav-link" href={% url 'getHistoricalData' %}>Display OEE for a production line</a>
+          <a class="nav-link " href = {% url 'EntryPage' %}>Logout</a>
         </div>
       </div>
     </div>
