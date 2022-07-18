@@ -26,17 +26,18 @@
   <body>
 
 
-  <form action="" method="post">
+  <form action="" method="post" id = "form">
+    {% csrf_token %}
     <h1> Input values to calculate OEE</h1>
     <br>
 <!-- Machine ID-->
   <div class="input-group input-group-lg">
     <span class="input-group-text" id="inputGroup-sizing-lg">Machine ID</span>
-    <select class="form-select" aria-label="Default select example">
+      <select class="form-select" aria-label="Default select example">
         <option selected>Select Machine ID</option>
-        <option value="1">123</option>
-        <option value="2">239</option>
-        <option value="3">213</option>
+        <option value="123">123</option>
+        <option value="239">239</option>
+        <option value="213">213</option>
       </select>
   </div>
   <!-- INPUT VALUES-->
@@ -45,77 +46,77 @@
     <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm">Total Shift Time</span>
         
-        <input type="text" class="form-control" placeholder="Hour" aria-label="Hour">
+        <input type="text" class="form-control" placeholder="Hour" aria-label="Hour" name = "TotalShiftTimeHr" required>
         <span class="input-group-text">:</span>
-        <input type="text" class="form-control" placeholder="Minute" aria-label="Minute">
+        <input type="text" class="form-control" placeholder="Minute" aria-label="Minute" name = "TotalShiftTimeMin" required>
       
       </div>
       <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm">Planned Down Time</span>
         
 
-        <input type="text" class="form-control" placeholder="Hour" aria-label="Hour">
+        <input type="text" class="form-control" placeholder="Hour" aria-label="Hour" name = "PlannedDownTimeHr" required>
         <span class="input-group-text">:</span>
-        <input type="text" class="form-control" placeholder="Minute" aria-label="Minute">
+        <input type="text" class="form-control" placeholder="Minute" aria-label="Minute" name = "PlannedDownTimeMin" required>
 
       </div>
       <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm">All Down Time</span>
     
-        <input type="text" class="form-control" placeholder="Hour" aria-label="Hour">
+        <input type="text" class="form-control" placeholder="Hour" aria-label="Hour" name = "AllDownTimeHr" required>
         <span class="input-group-text">:</span>
-        <input type="text" class="form-control" placeholder="Minute" aria-label="Minute">
+        <input type="text" class="form-control" placeholder="Minute" aria-label="Minute" name = "AllDownTimeMin" required>
 
       </div>
       <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm">All Stop Time</span>
         
 
-        <input type="text" class="form-control" placeholder="Hour" aria-label="Hour">
+        <input type="text" class="form-control" placeholder="Hour" aria-label="Hour" name = "AllStopTimeHr" required>
         <span class="input-group-text">:</span>
-        <input type="text" class="form-control" placeholder="Minute" aria-label="Minute">
+        <input type="text" class="form-control" placeholder="Minute" aria-label="Minute" name = "AllStopTimeMin" required>
 
       </div>
       <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm">Actual Cycle Time</span>
         
 
-        <input type="text" class="form-control" placeholder="Hour" aria-label="Hour">
+        <input type="text" class="form-control" placeholder="Hour" aria-label="Hour" name = "ActualCycleTimeHr" required>
         <span class="input-group-text">:</span>
-        <input type="text" class="form-control" placeholder="Minute" aria-label="Minute">
+        <input type="text" class="form-control" placeholder="Minute" aria-label="Minute" name = "ActualCycleTimeMin" required>
 
       </div>
       <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm">Actual Operational Time</span>
        
 
-        <input type="text" class="form-control" placeholder="Hour" aria-label="Hour">
+        <input type="text" class="form-control" placeholder="Hour" aria-label="Hour" name = "ActualOperationalTimeHr" required>
         <span class="input-group-text">:</span>
-        <input type="text" class="form-control" placeholder="Minute" aria-label="Minute">
+        <input type="text" class="form-control" placeholder="Minute" aria-label="Minute" name = "ActualOperationalTimeMin" required>
 
       </div>
       <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm">Theoretical Cycle Time</span>
         
 
-        <input type="text" class="form-control" placeholder="Hour" aria-label="Hour">
+        <input type="text" class="form-control" placeholder="Hour" aria-label="Hour" name = "TheoreticalCycleTimeHr" required>
         <span class="input-group-text">:</span>
-        <input type="text" class="form-control" placeholder="Minute" aria-label="Minute">
+        <input type="text" class="form-control" placeholder="Minute" aria-label="Minute" name = "TheoreticalCycleTimeMin" required>
 
       </div>
       <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm">Actual Processing Time</span>
         
 
-        <input type="text" class="form-control" placeholder="Hour" aria-label="Hour">
+        <input type="text" class="form-control" placeholder="Hour" aria-label="Hour" name = "ActualProcessingTimeHr" required>
         <span class="input-group-text">:</span>
-        <input type="text" class="form-control" placeholder="Minute" aria-label="Minute">
+        <input type="text" class="form-control" placeholder="Minute" aria-label="Minute" name = "ActualProcessingTimeMin" required>
 
       </div>
       <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm">Total Amount Produced</span>
 
-        <input type="text" class="form-control" placeholder="Hour" aria-label="Hour">
+        <input type="text" class="form-control" placeholder="Hour" aria-label="Hour"name = "TotalAmountProducedHr" required>
         <span class="input-group-text">:</span>
         <input type="text" class="form-control" placeholder="Minute" aria-label="Minute">
 
