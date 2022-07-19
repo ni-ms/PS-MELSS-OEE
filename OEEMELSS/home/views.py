@@ -117,8 +117,9 @@ def displayPage(request): # complete
 def getHistoricalData(request):
     dict = {"id":None}
     if request.method == "POST":
-        MachineID = float(request.POST.get('MachineID'))
-        if MachineID == 0.0:
+        MachineID = request.POST.get('MachineID')
+        m1 = float(MachineID)
+        if m1 == 0.0:
             #something
             print()
             post = OEEValues.objects.all()
@@ -126,7 +127,9 @@ def getHistoricalData(request):
         else:
             #something
             print()
-            post = OEEValues.objects.all(machineid = MachineID)
+            post = OEEValues.objects.all()
+            post = OEEValues.objects.filter(machineid = MachineID)
+            
 
         dict = {"id":post}
     
