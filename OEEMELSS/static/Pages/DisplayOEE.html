@@ -2,6 +2,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 <!-- BOOTSTRAP -->
 
+{% load static %}
 
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
@@ -25,7 +26,8 @@
   <!-- Display OEE-->
 <body>
 
-  <form action="" method="post" id = "form">
+
+  <form class="tablestyle" action="" method="post" id = "form">
     {% csrf_token %}
     <h1> Select Machine ID to filter Data</h1>
     <br>
@@ -72,7 +74,7 @@
 </body>
   <style scoped>
     body{
-      background-image: url('./Images/Display_Background.jpg');
+      background-image: url("{% static 'Images/Display_Background.jpg'%}");
     }
     .tablestyle{
       padding-left: 250px;
