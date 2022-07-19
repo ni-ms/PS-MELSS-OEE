@@ -83,6 +83,25 @@ def displayPage(request, dict = defaultdict(def_value)):
     P = dict["P"]
     Q = dict["Q"]
     
+    Block = []
+
+    Min = min(A,P,Q)
+    if Min == A:
+        Block.append("Try to reduce Planned stops")
+        Block.append("Try to reduce Unplanned stops")
+
+    if Min == P:
+        Block.append("Reduce Micro stops")
+        Block.append("Increase cycle speed")
+    if Min == Q:
+        Block.append("Reduce Start-up rejects")
+        Block.append("Reduce Production rejects")
+    
+    if Min == 0.0:
+        Block.clear()
+        Block.append("Machine Broken")
+
+    print(Block)
 
     return render(request, 'Pages/OEEOutput.html', dict) #HttpResponse("this is where you show OEE value")
 
