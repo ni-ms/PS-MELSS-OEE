@@ -82,7 +82,7 @@ def inputValues(request): # Pending DB addition
 
     
 
-        # Enter mongo Raw commands here
+        # Enter mongo Raw commands here, done 
         post = OEEValues()
         post.machineid = MachineID
         post.oeevalue = OEEValue
