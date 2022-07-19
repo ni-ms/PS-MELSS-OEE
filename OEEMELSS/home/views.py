@@ -22,7 +22,7 @@ def loginErrorPage(request):
 def ErrorPage(request):
     return render(request,'Pages/404Page.html')
 
-def inputValues(request):
+def inputValues(request): # Pending DB addition
     if request.method == 'POST':
         MachineID = request.POST.get('MachineID') # Enter in DB
         TotalShiftTimeHr = float(request.POST.get('TotalShiftTimeHr'))
@@ -61,13 +61,34 @@ def inputValues(request):
         OEEValue = (Availability * Quality * Performance) / 10000
         print(OEEValue, Availability, Quality, Performance)
 
+        Block = []
+        Min = min(Availability,Performance,Quality)
+        if Min != 100.0 and Min != 0:
+            if Min == Availability:
+                Block.append("Try to reduce Planned stops")
+                Block.append("Try to reduce Unplanned stops")
+
+            if Min == Performance:
+                Block.append("Reduce Micro stops")
+                Block.append("Increase cycle speed")
+            if Min == Quality:
+                Block.append("Reduce Start-up rejects")
+                Block.append("Reduce Production rejects")
+        else:
+            Block.append("Machine is Perfect")
+    
+        if Min == 0.0:
+            Block.append("Machine Broken")
+
+    
+
         # Enter mongo Raw commands here
 
 
         # End mongo Raw commands here
-        request.session['project_details'] = {"id":MachineID, "OEEValue":OEEValue, "A":Availability,"P":Performance,"Q":Quality}
+        request.session['project_details'] = {"id":MachineID, "OEEValue":OEEValue, "A":Availability,"P":Performance,"Q":Quality, "Block":Block}
 
-        return redirect('/displayPage',dict = {"id":MachineID, "OEEValue":OEEValue, "A":Availability,"P":Performance,"Q":Quality})
+        return redirect('/displayPage')
 
     
     return render(request, 'Pages/CalculateOEE.html') #HttpResponse("this is where you input values")
@@ -75,33 +96,14 @@ def inputValues(request):
 def def_value():
     return 1
 
-def displayPage(request, dict = defaultdict(def_value)):
+def displayPage(request): # complete
     dict = request.session.get('project_details')
     MachineID = dict["id"]
     OEEValue = dict["OEEValue"]
     A = dict["A"]
     P = dict["P"]
     Q = dict["Q"]
-    
-    Block = []
-
-    Min = min(A,P,Q)
-    if Min == A:
-        Block.append("Try to reduce Planned stops")
-        Block.append("Try to reduce Unplanned stops")
-
-    if Min == P:
-        Block.append("Reduce Micro stops")
-        Block.append("Increase cycle speed")
-    if Min == Q:
-        Block.append("Reduce Start-up rejects")
-        Block.append("Reduce Production rejects")
-    
-    if Min == 0.0:
-        Block.clear()
-        Block.append("Machine Broken")
-
-    print(Block)
+    Block = dict["Block"]
 
     return render(request, 'Pages/OEEOutput.html', dict) #HttpResponse("this is where you show OEE value")
 
