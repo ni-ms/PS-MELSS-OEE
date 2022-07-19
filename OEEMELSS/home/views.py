@@ -74,16 +74,22 @@ def inputValues(request): # Pending DB addition
             if Min == Quality:
                 Block.append("Reduce Start-up rejects")
                 Block.append("Reduce Production rejects")
-        else:
+        elif Min == 100.0:
             Block.append("Machine is Perfect")
     
-        if Min == 0.0:
+        elif Min == 0.0:
             Block.append("Machine Broken")
 
     
 
         # Enter mongo Raw commands here
-
+        post = OEEValues()
+        post.machineid = MachineID
+        post.oeevalue = OEEValue
+        post.Avalue = Availability
+        post.Pvalue = Performance
+        post.Qvalue = Quality
+        post.save()
 
         # End mongo Raw commands here
         request.session['project_details'] = {"id":MachineID, "OEEValue":OEEValue, "A":Availability,"P":Performance,"Q":Quality, "Block":Block}
@@ -93,8 +99,6 @@ def inputValues(request): # Pending DB addition
     
     return render(request, 'Pages/CalculateOEE.html') #HttpResponse("this is where you input values")
 
-def def_value():
-    return 1
 
 def displayPage(request): # complete
     dict = request.session.get('project_details')
