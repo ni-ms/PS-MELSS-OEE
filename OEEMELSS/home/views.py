@@ -1,4 +1,5 @@
 from collections import defaultdict
+from re import M
 from django.shortcuts import render
 # Create your views here.
 from django.db import connection
@@ -114,7 +115,23 @@ def displayPage(request): # complete
     return render(request, 'Pages/OEEOutput.html', dict) #HttpResponse("this is where you show OEE value")
 
 def getHistoricalData(request):
-    return render(request, 'Pages/DisplayOEE.html') #HttpResponse("this is where you input machine and part id to display historical OEE value")
+    dict = {"id":None}
+    if request.method == "POST":
+        MachineID = float(request.POST.get('MachineID'))
+        if MachineID == 0.0:
+            #something
+            print()
+            post = OEEValues.objects.all()
+
+        else:
+            #something
+            print()
+            post = OEEValues.objects.all(machineid = MachineID)
+
+        dict = {"id":post}
+    
+    
+    return render(request, 'Pages/DisplayOEE.html', dict) #HttpResponse("this is where you input machine and part id to display historical OEE value")
 
 def displayHistoricalData(request):
     return render(request, 'Pages/OEEGraph.html') #HttpResponse("this is where you show historical OEE value for a given machine and part id")

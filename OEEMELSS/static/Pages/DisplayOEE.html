@@ -40,6 +40,7 @@
         <option value="0">All</option>
       </select>
     </div>
+    <button type="submit" class="btn btn-primary">Calculate OEE</button>
   </form>
 
   <div class="tablestyle">
@@ -47,7 +48,7 @@
   <table class="table">
     <thead class="table-dark">
       <tr>
-        <th scope="col">Machine ID</th>
+        <th scope="col">Index</th>
         <th scope="col">Quality</th>
         <th scope="col">Performance</th>
         <th scope="col">Availability</th>
@@ -55,27 +56,15 @@
       </tr>
     </thead>
     <tbody class="table-group-divider">
+      {% for i in id %}
       <tr>
-        <th scope="row">123</th>
-        <td>65%</td>
-        <td>45%</td>
-        <td>34%</td>
-        <td>9.94% </td>
+        <td scope = "row"> {{ forloop.counter }} </td>
+        <td scope = "row"> {{ i.Qvalue }} </td>
+        <td scope = "row"> {{ i.Pvalue }} </td>
+        <td scope = "row"> {{ i.Avalue }} </td>
+        <td scope = "row"> {{ i.oeevalue }} </td>
       </tr>
-      <tr>
-        <th scope="row">245</th>
-        <td>33%</td>
-        <td>34%</td>
-        <td>20%</td>
-        <td>2.24%</td>
-      </tr>
-      <tr>
-        <th scope="row">439</th>
-        <td>80%</td>
-        <td>85%</td>
-        <td>84%</td>
-        <td>57.12%</td>
-      </tr>
+      {% endfor %}
     </tbody>
   </table>
 </div>
