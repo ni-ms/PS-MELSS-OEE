@@ -7,3 +7,7 @@ class OEEValues(models.Model):
     Avalue = models.FloatField()
     Pvalue = models.FloatField()
     Qvalue = models.FloatField()
+
+class AuthenticateUser(models.Model):
+    UserName = models.CharField(max_length=255)
+    Password = models.CharField(max_length=255)
