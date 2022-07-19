@@ -15,7 +15,7 @@ def entryPage(request):
 
         post = AuthenticateUser.objects.filter(UserName = Username)
 
-        if post:
+        if post.exists():
             return redirect(request, '/dashboard')
         else:
             return redirect(request, '/loginErrorPage')
@@ -109,7 +109,7 @@ def inputValues(request): # complete
         return redirect('/displayPage')
 
     
-    return render(request, 'Pages/CalculateOEE.html') #HttpResponse("this is where you input values")
+    return render(request, 'Pages/CalculateOee.html') #HttpResponse("this is where you input values")
 
 
 def displayPage(request): # complete
