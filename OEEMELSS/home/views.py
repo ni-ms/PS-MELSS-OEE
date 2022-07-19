@@ -9,7 +9,16 @@ from home.models import *
 from django.contrib import messages
 
 def entryPage(request):
-    
+    if request.method == "POST":
+        Username = request.POST.get("Username")
+        PW = request.POST.get("PW")
+
+        post = AuthenticateUser.objects.filter(UserName = Username)
+
+        if post:
+            return redirect(request, '/dashboard')
+        else:
+            return redirect(request, '/loginErrorPage')
     
     return render(request, 'LandingPage.html') #HttpResponse("this is homepage, or login") 
 
