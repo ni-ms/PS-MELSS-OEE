@@ -1,3 +1,4 @@
+from collections import defaultdict
 from django.shortcuts import render
 # Create your views here.
 from django.db import connection
@@ -64,14 +65,26 @@ def inputValues(request):
 
 
         # End mongo Raw commands here
+        request.session['project_details'] = {"id":MachineID, "OEEValue":OEEValue, "A":Availability,"P":Performance,"Q":Quality}
 
-        return redirect('/displayPage')
+        return redirect('/displayPage',dict = {"id":MachineID, "OEEValue":OEEValue, "A":Availability,"P":Performance,"Q":Quality})
 
     
     return render(request, 'Pages/CalculateOEE.html') #HttpResponse("this is where you input values")
 
-def displayPage(request):
-    return render(request, 'Pages/OEEOutput.html') #HttpResponse("this is where you show OEE value")
+def def_value():
+    return 1
+
+def displayPage(request, dict = defaultdict(def_value)):
+    dict = request.session.get('project_details')
+    MachineID = dict["id"]
+    OEEValue = dict["OEEValue"]
+    A = dict["A"]
+    P = dict["P"]
+    Q = dict["Q"]
+    
+
+    return render(request, 'Pages/OEEOutput.html', dict) #HttpResponse("this is where you show OEE value")
 
 def getHistoricalData(request):
     return render(request, 'Pages/DisplayOEE.html') #HttpResponse("this is where you input machine and part id to display historical OEE value")
