@@ -27,7 +27,8 @@
      <div class = "container ">
         <div class="row">
             <div class="col-4">
-                <img src="./Images/OEE_Image.jpeg" height="200" width="300">
+              {% load static %}
+                <img src="{% static 'Images/OEE_Image.jpeg'%}" height="200" width="300">
             </div>
             <div class="col-8" style="text-indent: 50px; background-color: rgba(255,255,255,0.6);">
               
@@ -46,7 +47,7 @@ OEE (Overall Equipment Effectiveness) is the gold standard for measuring manufac
           This software is created to measure , calculate, display OEE scores for various machine lines. The whole software makes use of the OEE formula to track and keep record of OEE scores generated at various points of time. A comprehensive web-based and 100% paperless management system for small to medium manufacturing companies.
         </div>
         <div class="col-4">
-          <img src="./Images/OEE_Image_2.jpeg" height="200" width="300">
+          <img src="{% static 'Images/OEE_Image_2.jpeg'%}" height="200" width="300">
         </div>
       </div>        
  </div>
@@ -56,7 +57,7 @@ OEE (Overall Equipment Effectiveness) is the gold standard for measuring manufac
  <div class = "container">
     <div class="row">
         <div class="col-4">
-          <img src="./Images/OEE_Image_3.png" height="200" width="300">
+          <img src="{% static 'Images/OEE_Image_3.png'%}" height="200" width="300">
         </div>
         <div class="col-8" style="background-color: rgba(255,255,255,0.6);">
           <h2>Features of our software</h2> <br />
@@ -75,7 +76,7 @@ OEE (Overall Equipment Effectiveness) is the gold standard for measuring manufac
 
   <style scoped>
     body{
-      background-image: url('./Images/Landing_Background.jpg');
+      background-image: url('../Images/Landing_Background.jpeg');
     }
     .col-4
     .col-8{

@@ -12,7 +12,8 @@
       <div class="main">
          <div class="col-md-6 col-sm-12">
             <div class="login-form">
-               <form>
+               <form action="/dashboard/" method="post">
+                {% csrf_token %}
                   <div class="form-group">
                      <label>User Name</label>
                      <input type="text" class="form-control" placeholder="User Name">
@@ -45,7 +46,7 @@
 
 .sidenav {
     height: 100%;
-    background-image: url();
+    background-image: url(https://images.unsplash.com/photo-1542633008-b0047073391e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Z3JleSUyMG1vdW50YWlufGVufDB8fDB8fA%3D%3D&w=1000&q=80);
     overflow-x: hidden;
     padding-top: 20px;
 }
