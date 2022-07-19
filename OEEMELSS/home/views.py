@@ -13,12 +13,14 @@ def entryPage(request):
         Username = request.POST.get("Username")
         PW = request.POST.get("PW")
 
-        post = AuthenticateUser.objects.filter(UserName = Username)
 
-        if post.exists():
-            return redirect(request, '/dashboard')
-        else:
-            return redirect(request, '/loginErrorPage')
+        for i in AuthenticateUser.objects.all():
+
+            if i.UserName == Username and i.Password == PW:
+                return redirect(request, '/dashboard/')
+
+        return redirect(request, '/loginError/')
+
     
     return render(request, 'LandingPage.html') #HttpResponse("this is homepage, or login") 
 
