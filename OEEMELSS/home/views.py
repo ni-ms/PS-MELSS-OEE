@@ -8,6 +8,8 @@ from home.models import *
 from django.contrib import messages
 
 def entryPage(request):
+    
+    
     return render(request, 'LandingPage.html') #HttpResponse("this is homepage, or login") 
 
 def dashboard(request):
@@ -22,7 +24,7 @@ def loginErrorPage(request):
 def ErrorPage(request):
     return render(request,'Pages/404Page.html')
 
-def inputValues(request): # Pending DB addition
+def inputValues(request): # complete
     if request.method == 'POST':
         MachineID = request.POST.get('MachineID') # Enter in DB
         TotalShiftTimeHr = float(request.POST.get('TotalShiftTimeHr'))
