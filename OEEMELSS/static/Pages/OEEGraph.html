@@ -64,6 +64,7 @@ new Chart("myChart", {
   data: {
     labels: xValues, // values as machine id or forloop value
     datasets: [{
+      label: "OEE Score",
       fill: false,
       lineTension: 0,
       backgroundColor: "rgba(0,0,255,1.0)",
@@ -72,9 +73,13 @@ new Chart("myChart", {
     }]
   },
   options: {
-    legend: {display: true},
+    
+    legend: { display: true},
     scales: {
-      yAxes: [{ticks: {min: 0, max:150, padding: 5}}], // ticks between 1 and 100
+      xAxes: {
+                           type: 'time',
+                        },
+      yAxes: [{ticks: {min: 0, max:100, padding: 5}}], // ticks between 1 and 100
     }
   }
 });
