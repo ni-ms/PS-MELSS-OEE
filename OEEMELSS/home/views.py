@@ -10,16 +10,14 @@ from django.contrib import messages
 
 def entryPage(request):
     if request.method == "POST":
-        Username = request.POST.get("Username")
-        PW = request.POST.get("PW")
+        Username = request.POST.get('Username')
+        PW = request.POST.get('PW')
 
+        i = AuthenticateUser.objects.filter(UserName = Username, Password = PW)
+        if i.count() != 0:
+            return redirect('/dashboard')
 
-        for i in AuthenticateUser.objects.all():
-
-            if i.UserName == Username and i.Password == PW:
-                return redirect(request, '/dashboard/')
-
-        return redirect(request, '/loginError/')
+        return redirect('/loginError')
 
     
     return render(request, 'LandingPage.html') #HttpResponse("this is homepage, or login") 
