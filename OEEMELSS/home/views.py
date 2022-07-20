@@ -4,7 +4,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.db import connection
 from django.http import HttpRequest
-from django.shortcuts import redirect, render, HttpResponse
+from django.shortcuts import redirect, render
 from home.models import *
 from django.contrib import messages
 
@@ -146,4 +146,17 @@ def getHistoricalData(request):
     return render(request, 'Pages/DisplayOEE.html', dict) #HttpResponse("this is where you input machine and part id to display historical OEE value")
 
 def displayHistoricalData(request):
-    return render(request, 'Pages/OEEGraph.html') #HttpResponse("this is where you show historical OEE value for a given machine and part id")
+    dict = {"id":None}
+    if request.method == 'POST':
+        machineid = request.POST.get('MachineID')
+        m1 = float(machineid)
+        if m1 == 0:
+            post = OEEValues.objects.all()
+        
+        else:
+            post = OEEValues.objects.all()
+            post = OEEValues.objects.filter(machineid = machineid)
+        
+        dict = { "id": post }
+    
+    return render(request, 'Pages/OEEGraph.html', dict) #HttpResponse("this is where you show historical OEE value for a given machine and part id")
