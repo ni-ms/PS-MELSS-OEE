@@ -20,11 +20,10 @@
     <div class="input-group input-group-lg">
       <span class="input-group-text" id="inputGroup-sizing-lg">Machine ID</span>
       <select class="form-select" aria-label="Default select example" name = "MachineID" required>
-        <option selected>Select Machine ID</option>
+        <option selected value = "0">All</option>
         <option value="123">123</option>
         <option value="239">239</option>
         <option value="213">213</option>
-        <option value="0">All</option>
       </select>
     </div>
     <br><br>
@@ -37,6 +36,7 @@
     <thead class="table-dark">
       <tr>
         <th scope="col">Index</th>
+        <th scope="col">Machine ID</th>
         <th scope="col">Quality</th>
         <th scope="col">Performance</th>
         <th scope="col">Availability</th>
@@ -47,6 +47,7 @@
       {% for i in id %}
       <tr>
         <td scope = "row"> {{ forloop.counter }} </td>
+        <td scope = "row"> {{ i.machineid }} </td>
         <td scope = "row"> {{ i.Qvalue }} </td>
         <td scope = "row"> {{ i.Pvalue }} </td>
         <td scope = "row"> {{ i.Avalue }} </td>
