@@ -1,9 +1,14 @@
 from collections import defaultdict
 from re import M
+from urllib import response
 from django.shortcuts import render
+from django.views.generic import View
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
 # Create your views here.
 from django.db import connection
-from django.http import HttpRequest
+from django.http import HttpRequest, JsonResponse
 from django.shortcuts import redirect, render
 from home.models import *
 from django.contrib import messages
@@ -145,18 +150,12 @@ def getHistoricalData(request):
     
     return render(request, 'Pages/DisplayOEE.html', dict) #HttpResponse("this is where you input machine and part id to display historical OEE value")
 
-def displayHistoricalData(request):
+#api to get data
+def get_data(request):
     dict = {"id":None}
-    if request.method == 'POST':
-        machineid = request.POST.get('MachineID')
-        m1 = float(machineid)
-        if m1 == 0:
-            post = OEEValues.objects.all()
-        
-        else:
-            post = OEEValues.objects.all()
-            post = OEEValues.objects.filter(machineid = machineid)
-        
-        dict = { "id": post }
-    
-    return render(request, 'Pages/OEEGraph.html', dict) #HttpResponse("this is where you show historical OEE value for a given machine and part id")
+    post = OEEValues.objects.values_list('oeevalue', flat=True)
+    dict = {"id": list(post)}
+    return JsonResponse(dict)#HttpResponse("this is where you show historical OEE value for a given machine and part id")
+
+def displayHistoricalData(request):
+    return render(request, 'Pages/OEEGraph.html')

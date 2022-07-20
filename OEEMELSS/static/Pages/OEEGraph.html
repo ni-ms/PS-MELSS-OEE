@@ -8,48 +8,56 @@
 {% include 'Pages/Navbar/Navbar.html' %}
 <!-- END INCLUDE-->
 
-
+{% load static %}
 <body>
   <div class="histtext">
-  <!-- <h1>Historical OEE Data for machine: 123</h1> -->
-  <form class="tablestyle" action="" method="post" id = "form">
-    {% csrf_token %}
-    <h1> Select Machine ID to filter Data</h1>
-    <br>
+ <!-- form -->
+ <form class="tablestyle" action="" method="post" id = "form">
+  {% csrf_token %}
+  <h1> Select Machine ID to filter Data</h1>
+  <br>
 <!-- Machine ID-->
-    <div class="input-group input-group-lg">
-      <span class="input-group-text" id="inputGroup-sizing-lg">Machine ID</span>
-      <select class="form-select" aria-label="Default select example" name = "MachineID" required>
-        <option selected value = "0">All</option>
-        <option value="123">123</option>
-        <option value="239">239</option>
-        <option value="213">213</option>
-      </select>
-    </div>
-    <br><br>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+  <div class="input-group input-group-lg">
+    <span class="input-group-text" id="inputGroup-sizing-lg">Machine ID</span>
+    <select class="form-select" aria-label="Default select example" name = "MachineID" required>
+      <option selected value = "0">All</option>
+      <option value="123">123</option>
+      <option value="239">239</option>
+      <option value="213">213</option>
+    </select>
+  </div>
+  <br><br>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<!-- end form-->
   <br>
 <canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
 </div>
 <script type = "text/javascript">
+var url = '../dataapi/'
 var xValues = [];
 var yValues = [];
-let myDict = {};
-
-{% for i in id %}
-
-let text1 = "{{ i.machineid }}";
-let text2 = "{{ i.forloopcounter }}";
-
-let result = text1.concat(" ", text2);
-myDict[result] = {{i.oeevalue}};
-
-{% endfor %}
-
-for(let i = 0; i < xValues.length; i++ ){
- yValues.push((i+1) * 10);
+var arrlength = 0;
+fetch(url).then(Response=>Response.json()).then(data=>{
+  
+  var arr = Object.entries(data)[0][1];
+  for(let i = 0; i < arr.length; i++ ){
+yValues.push(arr[i]);
 }
+
+arrlength = yValues.length;
+for(let i = 0; i < arrlength; i++ ){
+xValues.push(i + 1);
+}
+
+});
+console.log(xValues)
+console.log(yValues)
+
+
+
+
+
 
 new Chart("myChart", {
   type: "line",
@@ -64,9 +72,9 @@ new Chart("myChart", {
     }]
   },
   options: {
-    legend: {display: false},
+    legend: {display: true},
     scales: {
-      yAxes: [{ticks: {min: 0, max:100, padding: 10}}], // ticks between 1 and 100
+      yAxes: [{ticks: {min: 0, max:150, padding: 5}}], // ticks between 1 and 100
     }
   }
 });
@@ -76,7 +84,7 @@ new Chart("myChart", {
 </body>
 <style scoped>
    body{
-    background-image: url('./Images/Landing_Background.jpg');
+    background-image: url("{% static 'Images/Landing_Background.jpg'%}");
   }
   .histtext{
     padding-left: 250px;

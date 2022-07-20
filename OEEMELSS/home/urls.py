@@ -2,6 +2,9 @@ from django.contrib import admin
 from django.urls import path
 from home import views
 
+
+from .views import get_data
+
 urlpatterns = [
     path("admin/",admin.site.urls),
 
@@ -22,4 +25,7 @@ urlpatterns = [
     path("getHistoricalData/", views.getHistoricalData, name = 'getHistoricalData'),
     
     path("displayHistoricalData/", views.displayHistoricalData, name = 'displayHistoricalData'),
+
+    path("dataapi/", get_data, name='api-data'),
+
 ]
