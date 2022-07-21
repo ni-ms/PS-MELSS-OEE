@@ -6,7 +6,7 @@ from home import views
 from .views import get_data
 
 urlpatterns = [
-    path("admin/",admin.site.urls),
+   path("admin/",admin.site.urls),
 
     path("dashboard/", views.dashboard, name = 'dashboard'),
 

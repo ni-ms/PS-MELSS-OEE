@@ -11,25 +11,7 @@
 {% load static %}
 <body>
   <div class="histtext">
- <!-- form -->
- <form class="tablestyle" action="" method="post" id = "form">
-  {% csrf_token %}
-  <h1> Select Machine ID to filter Data</h1>
-  <br>
-<!-- Machine ID-->
-  <div class="input-group input-group-lg">
-    <span class="input-group-text" id="inputGroup-sizing-lg">Machine ID</span>
-    <select class="form-select" aria-label="Default select example" name = "MachineID" required>
-      <option selected value = "0">All</option>
-      <option value="123">123</option>
-      <option value="239">239</option>
-      <option value="213">213</option>
-    </select>
-  </div>
-  <br><br>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-<!-- end form-->
+ <h1> View OEE Scores in a graph</h1>
   <br>
 <canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
 </div>
